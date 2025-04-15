@@ -6,6 +6,7 @@ class Product {
         $this->conn = $db;
     }
 
+        //optener todos los productos
     public function getAll($category_id = null) {
         $query = "SELECT * FROM products";
         if ($category_id) {
@@ -28,7 +29,7 @@ class Product {
         return $productos;
     }
     
-
+    //crear producto
     public function add($nombre, $descripcion, $precio, $imagen, $categoria_id) {
         $sql = "INSERT INTO products (name, description, price, image, category_id) 
                 VALUES (?, ?, ?, ?, ?)";
@@ -39,13 +40,15 @@ class Product {
         return $stmt->execute();
     }
     
-
+    //eliminar producto
     public function delete($id) {
         $stmt = $this->conn->prepare("DELETE FROM products WHERE id = ?");
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
 
+
+    //obtener producto por id
     public function getById($id) {
         $stmt = $this->conn->prepare("SELECT * FROM products WHERE id = ?");
         $stmt->bind_param("i", $id);
@@ -54,7 +57,7 @@ class Product {
         return $result->fetch_assoc();
     }
     
-
+    //actualizar producto
     public function update($id, $name, $description, $price, $image, $category_id) {
         if ($image) {
             $sql = "UPDATE products SET name = ?, description = ?, price = ?, image = ?, category_id = ? WHERE id = ?";
@@ -67,7 +70,7 @@ class Product {
         }
     }
     
-    
+    //obtener productos por categoria
     public function getByCategory($categoryId) {
         $stmt = $this->conn->prepare("SELECT * FROM products WHERE category_id = ?");
         $stmt->bind_param("i", $categoryId);

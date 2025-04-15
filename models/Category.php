@@ -6,6 +6,7 @@ class Category {
         $this->conn = $db;
     }
 
+    //obtener todas las categorias
     public function getAll() {
         $query = "SELECT * FROM categories";
         $result = $this->conn->query($query);

@@ -29,6 +29,7 @@ class ProductController {
     }
 
 
+    //Eliminar producto
     public function delete($id) {
         if ($this->productModel->delete($id)) {
             $_SESSION['message'] = "Producto eliminado correctamente.";
@@ -39,6 +40,7 @@ class ProductController {
         exit;
     }
 
+    //actualizar producto
     public function update($id, $name, $description, $price, $image, $category_id) {
         if ($this->productModel->update($id, $name, $description, $price, $image, $category_id)) {
             $_SESSION['message'] = "Producto actualizado correctamente.";
@@ -52,6 +54,7 @@ class ProductController {
        
 }
 
+//peticiones post
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller = new ProductController();
@@ -88,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-  // 👇 Aquí recibe la petición de eliminar
+  // peticion eliminar producto
   if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'delete') {
     $controller = new ProductController();
     $controller->delete($_GET['id']);

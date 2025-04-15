@@ -20,6 +20,7 @@ class AuthController {
         $this->user = new User($conn); 
     }
 
+        //login
     public function login($username, $password) {
         if (empty($username) || empty($password)) {
             $_SESSION['login_error'] = "Completa todos los campos.";
@@ -41,6 +42,7 @@ class AuthController {
         exit;
     }
 
+    //registrar usuario y validaciones
     public function register($username, $email, $password) {
        
         if (empty($username) || empty($email) || empty($password)) {
@@ -84,11 +86,10 @@ class AuthController {
         exit;
     }
     
-    
-
-
 
 }
+
+//peticiones post
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $auth = new AuthController();

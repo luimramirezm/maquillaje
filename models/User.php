@@ -10,7 +10,7 @@ class User {
         $this->conn = $connection;
     }
 
-    // 🔐 LOGIN
+    // LOGIN
     public function login($username, $password) {
         $stmt = $this->conn->prepare("
             SELECT users.*, roles.name as role 
@@ -31,7 +31,7 @@ class User {
         return false;
     }
     
-
+    //validar usuario
     public function usuarioExiste($username) {
         $stmt = $this->conn->prepare("SELECT id FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
@@ -40,12 +40,13 @@ class User {
         return $stmt->num_rows > 0;
     }
     
- public function createUser($username, $email, $password, $role_id) { 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $this->conn->prepare("INSERT INTO users (username, email, password, role_id) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("sssi", $username, $email, $hashedPassword, $role_id);
-    return $stmt->execute();
-}
+    //crear usuario
+    public function createUser($username, $email, $password, $role_id) { 
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $this->conn->prepare("INSERT INTO users (username, email, password, role_id) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("sssi", $username, $email, $hashedPassword, $role_id);
+        return $stmt->execute();
+    }
 
     
 
@@ -60,7 +61,7 @@ class User {
     
     
 
-    // 📋 OBTENER TODOS LOS USUARIOS  public function getAllUsers() {
+    //  OBTENER TODOS LOS USUARIOS  public function getAllUsers() {
         public function getAllUsersWithRoles() {
             $sql = "SELECT users.id, users.username, users.email, roles.name AS role_name 
                     FROM users 

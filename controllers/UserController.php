@@ -18,7 +18,7 @@ $conn = $db->getConnection();
 
 $userModel = new User($conn);
 
-
+//ELIMINAR USUARIO
 if (isset($_POST['delete'])) {
     $userId = $_POST['user_id'];
     $success = $userModel->deleteUser($userId);
@@ -34,7 +34,7 @@ if (isset($_POST['delete'])) {
     exit;
 }
 
-
+//CREAR USUARIO
 if (isset($_POST['create'])) {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);

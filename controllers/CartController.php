@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id']) && !iss
     exit;
 }
 
-    //Vaciar todo el carrito (botón "Vaciar carrito"
+    //Vaciar todo el carrito 
 if (isset($_GET['action']) && $_GET['action'] === 'clear') {
     $cart->clear();
     header("Location: ../views/cart.php");
