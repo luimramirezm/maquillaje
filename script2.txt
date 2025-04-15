@@ -60,4 +60,11 @@ INSERT INTO categories (name) VALUES
 ('Esmaltes'),
 ('Cuidado facial');
 
+INSERT INTO users (username, email, password, role_id)
+VALUES (
+  'admin',
+  'admin@glamstore.com',
+  '$2y$10$XeaJpq30oMcGhD1tgEyTSOU/IZntufArMhRcS9W8yScXuinYov3zO', -- clave 123456
+  1
+);
 
